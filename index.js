@@ -180,6 +180,13 @@ function scoreboard(getinningscoreCB, inningCB, innings) {
       scoreboardArray.push("Inning " + i + ": Away " + currentInnA + " - Home " + currentInnH )
 
   }
+
+  if (totA != totH){
+    scoreboardArray.push("Final Score: Away " + totA + " - Home " + totH);
+  }else {
+    scoreboardArray.push("This game will require extra innings: Away " + totA + " - Home " + totH);
+  }
+
   return scoreboardArray;
 
 
