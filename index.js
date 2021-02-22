@@ -63,9 +63,10 @@ NOTE: This will be a callback function for the tasks below
 */
 
 function inning(/*Code Here*/){
-    /*Code Here*/
+  let score = Math.floor(Math.random() * 3 );
+  return score;
 }
-
+console.log(inning());
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -81,19 +82,39 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inningCB, innings){
+  let totH = 0;
+  let totA = 0;
+  
+  for (let i = 1; i <= innings; i++ ){
+    totA += inningCB();
+    totH += inningCB();
+
+  }
+  
+  
+  return {
+    Home: totH,
+    Away: totA,
+  }
 }
+console.log(finalScore(inning, 9));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-}
+function getInningScore(inningCB) {
+  let totH = inningCB();
+  let totA = inningCB();
 
+  return {
+    Home: totH,
+    Away: totA,
+  }
+}
+console.log(getInningScore(inning));
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -136,11 +157,32 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getinningscoreCB, inningCB, innings) {
+  let totA = 0;
+  let totH = 0;
+  let currentInnH = 0;
+  let currentInnA = 0;
+  let scoreboardArray = [];
+  for( let i = 1; i <= innings; i++){
+      currentInnA = inning();
+      currentInnH = inning();
+      totA += currentInnA;
+      totH += currentInnH
+      scoreboardArray.push("Inning " + i + ": Away " + currentInnA + " - Home " + currentInnH )
+
+  }
+
+  if (totA != totH){
+    scoreboardArray.push("Final Score: Away " + totA + " - Home " + totH);
+  }else {
+    scoreboardArray.push("This game will require extra innings: Away " + totA + " - Home " + totH);
+  }
+
+  return scoreboardArray;
+
 }
 
-
+console.log(scoreboard(getInningScore, inning,  9));
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
