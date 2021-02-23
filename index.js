@@ -180,7 +180,7 @@ function scoreboard(getinningscoreCB, inningCB, innings) {
 
   return scoreboardArray;
 
-}   
+}     
 
 console.log(scoreboard(getInningScore, inning,  9));
 
